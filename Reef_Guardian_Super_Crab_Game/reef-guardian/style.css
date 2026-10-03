@@ -1,0 +1,1099 @@
+/* =========================================================
+   REEF GUARDIAN
+   Main Stylesheet
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+
+/* ============================================================
+   1. ROOT / GLOBAL STYLES
+============================================================ */
+
+:root {
+  font-family: 'DM Sans', Arial, sans-serif;
+  color: #ecffff;
+  background: #061827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 850px;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 50% -30%,
+      #18465a,
+      #061827 65%
+    );
+
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   2. MAIN APPLICATION SHELL
+============================================================ */
+
+.app-shell {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+
+/* ============================================================
+   3. TOP NAVIGATION BAR
+============================================================ */
+
+.topbar {
+  height: 75px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* ------------------------------------------------------------
+   Brand / Logo
+------------------------------------------------------------ */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  letter-spacing: 0.11em;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+
+  display: grid;
+  place-items: center;
+
+  filter: drop-shadow(
+    0 4px 9px #001e2faa
+  );
+}
+
+.brand-icon img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+.brand b {
+  display: block;
+
+  font: 800 16px Outfit;
+}
+
+.brand small {
+  display: block;
+
+  margin-top: 1px;
+
+  color: #71c9cf;
+
+  font: 700 9px Outfit;
+
+  letter-spacing: 0.26em;
+}
+
+
+/* ------------------------------------------------------------
+   Top Mission Information
+------------------------------------------------------------ */
+
+.top-meta {
+  color: #88afb7;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.23em;
+}
+
+.live-dot {
+  display: inline-block;
+
+  width: 7px;
+  height: 7px;
+
+  margin-right: 10px;
+
+  background: #2df1b5;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 13px #2df1b5;
+}
+
+.divider {
+  padding: 0 12px;
+
+  color: #335f67;
+}
+
+
+/* ------------------------------------------------------------
+   Sound Button
+------------------------------------------------------------ */
+
+.icon-btn {
+  width: 39px;
+  height: 39px;
+
+  background: #10374a;
+
+  border: 1px solid #2d6170;
+  border-radius: 12px;
+
+  color: #9de5de;
+
+  font-size: 20px;
+}
+
+
+/* ============================================================
+   4. MAIN GAME FRAME
+============================================================ */
+
+.game-frame {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  max-height:
+    calc(100vh - 122px);
+
+  margin: auto;
+
+  overflow: hidden;
+
+  background: #0b4a63;
+
+  border: 1px solid #408296;
+  border-radius: 21px;
+
+  box-shadow:
+    0 24px 70px #0008,
+    0 0 0 6px #ffffff08;
+}
+
+
+/* ------------------------------------------------------------
+   Game Canvas
+------------------------------------------------------------ */
+
+canvas {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ------------------------------------------------------------
+   Screen Vignette
+------------------------------------------------------------ */
+
+.vignette {
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  box-shadow:
+    inset 0 0 85px #03172788,
+    inset 0 -100px 90px #03263c88;
+}
+
+
+/* ============================================================
+   5. TOP GAME HUD
+============================================================ */
+
+.hud {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 29px 36px;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      #032b41bd,
+      transparent
+    );
+}
+
+
+/* ------------------------------------------------------------
+   Mission Label
+------------------------------------------------------------ */
+
+.eyebrow,
+.panel-kicker {
+  color: #85f5d8;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.26em;
+}
+
+.hud h1 {
+  margin: 3px 0;
+
+  font:
+    800 clamp(23px, 2.3vw, 36px)
+    Outfit;
+
+  text-shadow:
+    0 3px 12px #022c43;
+}
+
+.objective {
+  color: #c6eff1;
+
+  font-size: 12px;
+
+  letter-spacing: 0.03em;
+}
+
+
+/* ------------------------------------------------------------
+   HUD Statistics
+------------------------------------------------------------ */
+
+.hud-right {
+  display: flex;
+
+  gap: 7px;
+}
+
+.stat {
+  min-width: 110px;
+
+  padding: 9px 14px;
+
+  background: #052c40cc;
+
+  border:
+    1px solid #5bb3b76b;
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 5px 20px #00253844;
+}
+
+.stat small {
+  display: block;
+
+  color: #8ac1c8;
+
+  font:
+    800 8px Outfit;
+
+  letter-spacing: 0.12em;
+
+  white-space: nowrap;
+}
+
+.stat b {
+  display: block;
+
+  margin-top: 3px;
+
+  font:
+    800 20px Outfit;
+}
+
+
+/* ============================================================
+   6. BOTTOM GAME HUD
+============================================================ */
+
+.bottom-hud {
+  position: absolute;
+
+  left: 25px;
+  right: 25px;
+  bottom: 23px;
+
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  pointer-events: none;
+}
+
+
+/* ------------------------------------------------------------
+   Game Control Hint
+------------------------------------------------------------ */
+
+.hint {
+  max-width: 68%;
+
+  padding: 10px 13px;
+
+  background: #062e42c9;
+
+  border:
+    1px solid #5ca7a376;
+
+  border-radius: 12px;
+
+  color: #e5fbf3;
+
+  font-size: 12px;
+
+  box-shadow:
+    0 8px 24px #00334855;
+}
+
+.hint kbd {
+  padding: 2px 5px;
+
+  background: #f8ab2c;
+
+  border-radius: 4px;
+
+  color: #082c3c;
+
+  font-family: inherit;
+  font-weight: 900;
+}
+
+
+/* ------------------------------------------------------------
+   Charge / Sonar Meter
+------------------------------------------------------------ */
+
+.meter-wrap {
+  width: 155px;
+
+  padding: 9px 12px;
+
+  background: #062e42ca;
+
+  border:
+    1px solid #5ca7a376;
+
+  border-radius: 12px;
+
+  font:
+    800 9px Outfit;
+
+  letter-spacing: 0.15em;
+}
+
+.meter {
+  height: 6px;
+
+  margin-top: 8px;
+
+  overflow: hidden;
+
+  background: #244b5c;
+
+  border-radius: 9px;
+}
+
+.meter i {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #35dfcf,
+      #f8bf52
+    );
+
+  border-radius: 9px;
+
+  transition:
+    width 0.1s;
+}
+
+
+/* ============================================================
+   7. AIM / TARGET CAPTION
+============================================================ */
+
+.aim-caption {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform:
+    translate(-50%, 30px);
+
+  padding: 6px 10px;
+
+  background: #063b50bd;
+
+  border-radius: 7px;
+
+  color: #eafff8;
+
+  font:
+    700 11px Outfit;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   8. GAME NOTIFICATIONS / TOAST
+============================================================ */
+
+.toast {
+  position: absolute;
+
+  top: 28%;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  padding: 9px 16px;
+
+  background: #063246e8;
+
+  border:
+    1px solid #63dec1;
+
+  border-radius: 11px;
+
+  font:
+    700 14px Outfit;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 12px 40px #001b32aa;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   9. MENU / SCREEN OVERLAY
+============================================================ */
+
+.overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 43%,
+      #035e7180,
+      #021c2be8 76%
+    );
+
+  backdrop-filter:
+    blur(4px);
+}
+
+
+/* ============================================================
+   10. GENERAL PANEL STYLING
+============================================================ */
+
+.panel {
+  width:
+    min(690px, 88%);
+
+  max-height: 95%;
+
+  padding:
+    26px 43px 28px;
+
+  overflow: auto;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0a4052ed,
+      #05273cf5
+    );
+
+  border:
+    1px solid #62c5bf80;
+
+  border-radius: 23px;
+
+  box-shadow:
+    0 30px 90px #001625ba,
+    inset 0 1px #ffffff22;
+}
+
+
+/* ============================================================
+   11. START SCREEN
+============================================================ */
+
+.start-panel {
+  width:
+    min(700px, 88%);
+}
+
+
+/* ------------------------------------------------------------
+   Panel Header / Kicker
+------------------------------------------------------------ */
+
+.panel-kicker {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 11px;
+
+  font-size: 10px;
+}
+
+.kicker-line {
+  width: 22px;
+  height: 1px;
+
+  background: #55cbb4;
+}
+
+
+/* ------------------------------------------------------------
+   Hero Crab Robot
+------------------------------------------------------------ */
+
+.hero-crab {
+  width: 235px;
+
+  margin:
+    -10px auto -18px;
+
+  filter:
+    drop-shadow(
+      0 16px 18px #00182588
+    );
+}
+
+.hero-crab img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+}
+
+
+/* ------------------------------------------------------------
+   Feature Pill
+------------------------------------------------------------ */
+
+.pill {
+  display: inline-block;
+
+  padding: 7px 13px;
+
+  background: #0c5964;
+
+  border:
+    1px solid #48b9ac;
+
+  border-radius: 100px;
+
+  color: #bdfae5;
+
+  font:
+    800 10px Outfit;
+
+  letter-spacing: 0.15em;
+}
+
+.pill span {
+  padding: 0 5px;
+
+  color: #f7aa31;
+}
+
+
+/* ------------------------------------------------------------
+   Panel Headings
+------------------------------------------------------------ */
+
+.panel h2 {
+  margin: 14px 0;
+
+  font:
+    800 clamp(30px, 3.4vw, 51px) / 1.04
+    Outfit;
+
+  letter-spacing: -0.035em;
+}
+
+.panel h2 em {
+  color: #ffad2a;
+
+  font-style: normal;
+}
+
+
+/* ------------------------------------------------------------
+   Panel Description
+------------------------------------------------------------ */
+
+.panel p {
+  max-width: 525px;
+
+  margin:
+    0 auto 17px;
+
+  color: #c3e2e3;
+
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   12. PRIMARY BUTTON
+============================================================ */
+
+.primary-btn {
+  min-width: 185px;
+
+  padding: 14px 22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffbd43,
+      #f78318
+    );
+
+  border: 0;
+  border-radius: 10px;
+
+  color: #102d3c;
+
+  font:
+    900 12px Outfit;
+
+  letter-spacing: 0.13em;
+
+  box-shadow:
+    0 5px 0 #9d4e14,
+    0 10px 20px #001d3099;
+
+  transition:
+    transform 0.15s,
+    filter 0.15s;
+}
+
+.primary-btn:hover {
+  transform:
+    translateY(-3px);
+
+  filter:
+    brightness(1.1);
+}
+
+.primary-btn span {
+  margin-left: 12px;
+
+  font-size: 18px;
+
+  vertical-align: -2px;
+}
+
+
+/* ============================================================
+   13. START SCREEN FOOTER
+============================================================ */
+
+.start-foot {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 22px;
+
+  margin-top: 25px;
+
+  color: #93b6bf;
+
+  font-size: 11px;
+}
+
+
+/* ============================================================
+   14. BRIEFING & RESULT PANELS
+============================================================ */
+
+.brief-panel,
+.result-panel {
+  max-width: 620px;
+}
+
+
+/* ------------------------------------------------------------
+   Briefing Number
+------------------------------------------------------------ */
+
+.brief-number {
+  margin:
+    15px 0 -2px;
+
+  color: #f6aa30;
+
+  font:
+    900 88px Outfit;
+
+  line-height: 1;
+
+  text-shadow:
+    0 8px 0 #70411a;
+}
+
+
+/* ------------------------------------------------------------
+   Briefing / Result Heading
+------------------------------------------------------------ */
+
+.brief-panel h2,
+.result-panel h2 {
+  margin:
+    10px 0;
+
+  font-size: 39px;
+}
+
+
+/* ============================================================
+   15. MISSION INSTRUCTIONS
+============================================================ */
+
+.instruction-grid {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  margin:
+    19px 0;
+}
+
+.instruction-grid div {
+  flex: 1;
+
+  padding:
+    12px 8px;
+
+  background: #ffffff0e;
+
+  border:
+    1px solid #8bd4d54a;
+
+  border-radius: 10px;
+
+  color: #d5faf5;
+
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.instruction-grid strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #ffb64b;
+
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   16. SCIENCE INFORMATION BOX
+============================================================ */
+
+.science-note {
+  max-width: 490px;
+
+  margin:
+    16px auto 19px;
+
+  padding:
+    10px 13px;
+
+  background: #0a66707a;
+
+  border-left:
+    3px solid #4df0c4;
+
+  border-radius: 6px;
+
+  color: #d8f7ed;
+
+  font-size: 11px;
+  line-height: 1.45;
+
+  text-align: left;
+}
+
+.science-note strong {
+  color: #9bffdb;
+}
+
+
+/* ============================================================
+   17. RESULT SCREEN
+============================================================ */
+
+.result-medal {
+  margin: 19px;
+
+  color: #ffbb35;
+
+  font-size: 65px;
+  line-height: 1;
+
+  text-shadow:
+    0 0 30px #ffbc4e99;
+}
+
+
+/* ------------------------------------------------------------
+   Result Statistics
+------------------------------------------------------------ */
+
+.result-stats {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 9px;
+}
+
+.result-stats div {
+  min-width: 125px;
+
+  padding: 12px;
+
+  background: #ffffff10;
+
+  border:
+    1px solid #6db5b357;
+
+  border-radius: 9px;
+
+  font:
+    800 18px Outfit;
+}
+
+.result-stats small {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #9fcbd0;
+
+  font:
+    700 9px Outfit;
+
+  letter-spacing: 0.12em;
+}
+
+
+/* ============================================================
+   18. GAME LOCATION LABEL
+============================================================ */
+
+.corner-label {
+  position: absolute;
+
+  right: 19px;
+  bottom: 5px;
+
+  color: #a9d1cf76;
+
+  font:
+    800 9px Outfit;
+
+  letter-spacing: 0.15em;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   19. PAGE FOOTER
+============================================================ */
+
+.footbar {
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  color: #638b97;
+
+  font:
+    800 9px Outfit;
+
+  letter-spacing: 0.21em;
+}
+
+.footbar i {
+  padding:
+    0 9px;
+
+  color: #ee9a28;
+
+  font-style: normal;
+}
+
+
+/* ============================================================
+   20. UTILITY CLASSES
+============================================================ */
+
+.hidden {
+  display: none !important;
+}
+
+
+/* ============================================================
+   21. LEVEL 2 — 360° REEF EXPLORATION
+============================================================ */
+
+.game-frame.level-two .hint {
+  max-width: 36%;
+
+  line-height: 1.4;
+}
+
+.game-frame.level-two .bottom-hud {
+  bottom: 14px;
+}
+
+
+/* ============================================================
+   22. RESPONSIVE — SHORTER SCREENS
+============================================================ */
+
+@media (max-height: 750px) {
+
+  .panel {
+    padding:
+      16px 35px;
+  }
+
+  .hero-crab {
+    width: 185px;
+  }
+
+  .panel h2 {
+    font-size: 37px;
+  }
+
+  .panel p {
+    font-size: 12px;
+  }
+
+  .start-foot {
+    margin-top: 14px;
+  }
+
+  .brief-number {
+    font-size: 65px;
+  }
+
+  .brief-panel h2,
+  .result-panel h2 {
+    font-size: 32px;
+  }
+}
+
+
+/* ============================================================
+   23. RESPONSIVE — SMALLER WIDTHS
+============================================================ */
+
+@media (max-width: 1000px) {
+
+  .app-shell {
+    padding:
+      0 10px;
+  }
+
+  .top-meta {
+    display: none;
+  }
+
+  .hud {
+    padding:
+      18px;
+  }
+
+  .stat {
+    min-width: 90px;
+
+    padding:
+      8px;
+  }
+
+  .hud h1 {
+    font-size: 23px;
+  }
+
+  .stat b {
+    font-size: 15px;
+  }
+}

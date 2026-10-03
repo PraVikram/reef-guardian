@@ -1,0 +1,479 @@
+<!--
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reef Guardian — Super Crab Robot</title>
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-icon"><img src="logo.svg" alt="Reef Guardian logo"></span><span><b>REEF GUARDIAN</b><small>SUPER CRAB ROBOT</small></span></div>
+      <div class="top-meta"><span class="live-dot"></span> OCEAN RESTORATION MISSION <span class="divider">/</span> FIELD PROTOTYPE 01</div>
+      <button id="soundBtn" class="icon-btn" aria-label="Toggle sound" title="Toggle sound">♫</button>
+    </header>
+    <main id="gameFrame" class="game-frame">
+      <canvas id="game" width="1280" height="720" aria-label="Reef Guardian game"></canvas>
+      <div class="vignette"></div>
+      <div id="hud" class="hud hidden">
+        <div class="hud-left"><div class="eyebrow" id="missionLabel">MISSION 01</div><h1 id="levelTitle">The drifting tide</h1><div id="objective" class="objective"></div></div>
+        <div class="hud-right"><div class="stat"><small>PLASTIC RECOVERED</small><b id="collected">0 / 10</b></div><div class="stat"><small>REEF HEALTH</small><b id="health">100%</b></div><div class="stat"><small>TIME</small><b id="timer">01:30</b></div></div>
+      </div>
+      <div id="bottomHud" class="bottom-hud hidden"><div id="hint" class="hint"></div><div class="meter-wrap"><span id="meterName">NET CHARGE</span><div class="meter"><i id="meterFill"></i></div></div></div>
+      <div id="aimCaption" class="aim-caption hidden"></div>
+      <div id="toast" class="toast hidden"></div>
+      <div id="overlay" class="overlay">
+        <section id="startPanel" class="panel start-panel">
+          <div class="panel-kicker"><span class="kicker-line"></span> AN INTERACTIVE OCEAN MISSION <span class="kicker-line"></span></div>
+          <div class="hero-crab" aria-hidden="true"><img src="crab-robot.webp" alt=""></div>
+          <div class="pill">2 LEVELS <span>✦</span> 360° REEF EXPLORATION</div>
+          <h2>Small robot.<br><em>Big ocean mission.</em></h2>
+          <p>Command the Super Crab Robot. Intercept drifting waste without trapping marine life, then survey a coral reef and recover plastic hidden in its branches.</p>
+          <button class="primary-btn" id="startBtn">BEGIN MISSION <span>↗</span></button>
+          <div class="start-foot"><span>🎮 Mouse + keyboard</span><span>⏱ About 5 minutes</span><span>🔊 Optional audio</span></div>
+        </section>
+        <section id="briefPanel" class="panel brief-panel hidden"><div class="panel-kicker" id="briefKicker">MISSION BRIEFING 01 / 02</div><div class="brief-number" id="briefNumber">01</div><h2 id="briefTitle"></h2><p id="briefText"></p><div class="instruction-grid" id="briefInstructions"></div><div class="science-note" id="briefScience"></div><button class="primary-btn" id="playBtn">LAUNCH LEVEL <span>↗</span></button></section>
+        <section id="resultPanel" class="panel result-panel hidden"><div class="panel-kicker" id="resultKicker">MISSION COMPLETE</div><div class="result-medal" id="resultIcon">✦</div><h2 id="resultTitle"></h2><p id="resultText"></p><div class="result-stats" id="resultStats"></div><div class="science-note" id="resultScience"></div><button class="primary-btn" id="nextBtn">CONTINUE <span>↗</span></button></section>
+      </div>
+      <div class="corner-label">SECTOR 07 · CORAL TRIANGLE</div>
+    </main>
+    <footer class="footbar"><span>REEF GUARDIAN <i>✦</i> SCIENCE IN ACTION</span><span id="footerStatus">SYSTEM READY</span></footer>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
+
+-->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Reef Guardian — Super Crab Robot</title>
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="logo.svg"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- =====================================================
+         TOP NAVIGATION BAR
+    ====================================================== -->
+    <header class="topbar">
+
+      <div class="brand">
+
+        <span class="brand-icon">
+          <img
+            src="logo.svg"
+            alt="Reef Guardian logo"
+          >
+        </span>
+
+        <span>
+          <b>REEF GUARDIAN</b>
+          <small>SUPER CRAB ROBOT</small>
+        </span>
+
+      </div>
+
+      <div class="top-meta">
+        <span class="live-dot"></span>
+        OCEAN RESTORATION MISSION
+        <span class="divider">/</span>
+        FIELD PROTOTYPE 01
+      </div>
+
+      <button
+        id="soundBtn"
+        class="icon-btn"
+        aria-label="Toggle sound"
+        title="Toggle sound"
+      >
+        ♫
+      </button>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN GAME AREA
+    ====================================================== -->
+    <main
+      id="gameFrame"
+      class="game-frame"
+    >
+
+      <!-- Main Game Canvas -->
+      <canvas
+        id="game"
+        width="1280"
+        height="720"
+        aria-label="Reef Guardian game"
+      ></canvas>
+
+      <!-- Visual Overlay -->
+      <div class="vignette"></div>
+
+
+      <!-- ===================================================
+           TOP GAME HUD
+      ==================================================== -->
+      <div
+        id="hud"
+        class="hud hidden"
+      >
+
+        <!-- Mission Information -->
+        <div class="hud-left">
+
+          <div
+            class="eyebrow"
+            id="missionLabel"
+          >
+            MISSION 01
+          </div>
+
+          <h1 id="levelTitle">
+            The drifting tide
+          </h1>
+
+          <div
+            id="objective"
+            class="objective"
+          ></div>
+
+        </div>
+
+
+        <!-- Mission Statistics -->
+        <div class="hud-right">
+
+          <div class="stat">
+            <small>PLASTIC RECOVERED</small>
+            <b id="collected">0 / 10</b>
+          </div>
+
+          <div class="stat">
+            <small>REEF HEALTH</small>
+            <b id="health">100%</b>
+          </div>
+
+          <div class="stat">
+            <small>TIME</small>
+            <b id="timer">01:30</b>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===================================================
+           BOTTOM GAME HUD
+      ==================================================== -->
+      <div
+        id="bottomHud"
+        class="bottom-hud hidden"
+      >
+
+        <div
+          id="hint"
+          class="hint"
+        ></div>
+
+        <div class="meter-wrap">
+
+          <span id="meterName">
+            NET CHARGE
+          </span>
+
+          <div class="meter">
+            <i id="meterFill"></i>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Aim Caption -->
+      <div
+        id="aimCaption"
+        class="aim-caption hidden"
+      ></div>
+
+
+      <!-- Notification / Toast -->
+      <div
+        id="toast"
+        class="toast hidden"
+      ></div>
+
+
+      <!-- ===================================================
+           GAME OVERLAYS / MENUS
+      ==================================================== -->
+      <div
+        id="overlay"
+        class="overlay"
+      >
+
+
+        <!-- ===============================================
+             START SCREEN
+        ================================================ -->
+        <section
+          id="startPanel"
+          class="panel start-panel"
+        >
+
+          <div class="panel-kicker">
+
+            <span class="kicker-line"></span>
+
+            AN INTERACTIVE OCEAN MISSION
+
+            <span class="kicker-line"></span>
+
+          </div>
+
+
+          <!-- Crab Robot Hero Image -->
+          <div
+            class="hero-crab"
+            aria-hidden="true"
+          >
+            <img
+              src="crab-robot.webp"
+              alt=""
+            >
+          </div>
+
+
+          <!-- Feature Pill -->
+          <div class="pill">
+            2 LEVELS
+            <span>✦</span>
+            360° REEF EXPLORATION
+          </div>
+
+
+          <!-- Game Title -->
+          <h2>
+            Small robot.<br>
+            <em>Big ocean mission.</em>
+          </h2>
+
+
+          <!-- Game Description -->
+          <p>
+            Command the Super Crab Robot.
+            Intercept drifting waste without trapping marine life,
+            then survey a coral reef and recover plastic hidden
+            in its branches.
+          </p>
+
+
+          <!-- Start Button -->
+          <button
+            class="primary-btn"
+            id="startBtn"
+          >
+            BEGIN MISSION
+            <span>↗</span>
+          </button>
+
+
+          <!-- Controls / Information -->
+          <div class="start-foot">
+
+            <span>
+              🎮 Mouse + keyboard
+            </span>
+
+            <span>
+              ⏱ About 5 minutes
+            </span>
+
+            <span>
+              🔊 Optional audio
+            </span>
+
+          </div>
+
+        </section>
+
+
+        <!-- ===============================================
+             MISSION BRIEFING SCREEN
+        ================================================ -->
+        <section
+          id="briefPanel"
+          class="panel brief-panel hidden"
+        >
+
+          <div
+            class="panel-kicker"
+            id="briefKicker"
+          >
+            MISSION BRIEFING 01 / 02
+          </div>
+
+
+          <div
+            class="brief-number"
+            id="briefNumber"
+          >
+            01
+          </div>
+
+
+          <h2 id="briefTitle"></h2>
+
+
+          <p id="briefText"></p>
+
+
+          <!-- Instructions -->
+          <div
+            class="instruction-grid"
+            id="briefInstructions"
+          ></div>
+
+
+          <!-- Science Information -->
+          <div
+            class="science-note"
+            id="briefScience"
+          ></div>
+
+
+          <!-- Launch Level Button -->
+          <button
+            class="primary-btn"
+            id="playBtn"
+          >
+            LAUNCH LEVEL
+            <span>↗</span>
+          </button>
+
+        </section>
+
+
+        <!-- ===============================================
+             MISSION RESULT SCREEN
+        ================================================ -->
+        <section
+          id="resultPanel"
+          class="panel result-panel hidden"
+        >
+
+          <div
+            class="panel-kicker"
+            id="resultKicker"
+          >
+            MISSION COMPLETE
+          </div>
+
+
+          <!-- Mission Medal / Icon -->
+          <div
+            class="result-medal"
+            id="resultIcon"
+          >
+            ✦
+          </div>
+
+
+          <!-- Result Title -->
+          <h2 id="resultTitle"></h2>
+
+
+          <!-- Result Description -->
+          <p id="resultText"></p>
+
+
+          <!-- Mission Statistics -->
+          <div
+            class="result-stats"
+            id="resultStats"
+          ></div>
+
+
+          <!-- Science Information -->
+          <div
+            class="science-note"
+            id="resultScience"
+          ></div>
+
+
+          <!-- Continue Button -->
+          <button
+            class="primary-btn"
+            id="nextBtn"
+          >
+            CONTINUE
+            <span>↗</span>
+          </button>
+
+        </section>
+
+      </div>
+
+
+      <!-- ===================================================
+           LOCATION LABEL
+      ==================================================== -->
+      <div class="corner-label">
+        SECTOR 07 · CORAL TRIANGLE
+      </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+    <footer class="footbar">
+
+      <span>
+        REEF GUARDIAN
+        <i>✦</i>
+        SCIENCE IN ACTION
+      </span>
+
+      <span id="footerStatus">
+        SYSTEM READY
+      </span>
+
+    </footer>
+
+  </div>
+
+
+  <!-- =======================================================
+       GAME JAVASCRIPT
+  ======================================================== -->
+  <script src="game.js"></script>
+
+</body>
+
+</html>
